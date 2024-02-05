@@ -32,6 +32,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   fire_incidents:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    fire_incidents_staging:
+      +materialized: table
+    dim_location:
+      +materialized: table
+    dim_time:
+      +materialized: table
+    dim_incident_type:
+      +materialized: table
+    fact_incidents:
+      +materialized: table
+      columns:
+      - name: incident_number
+        tests:
+          - unique
+          - not_null
+

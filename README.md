@@ -4,9 +4,9 @@ This project uses a modern data stack, leveraging dbt (data build tool) and Amaz
 
 ## Architecture and DAGs
 
-![Alt text](resources/architecture.jpg "Title")
+![Alt text](resources/architecture_final.jpg "Architecture")
 
-![Alt text](resources/dag.png "Title")
+![Alt text](resources/dag.png "DAG")
 
 ## Features explanation
 

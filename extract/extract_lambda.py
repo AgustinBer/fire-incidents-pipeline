@@ -21,7 +21,6 @@ def calculate_md5_checksum(data):
     return hashlib.md5(data.encode()).hexdigest()
 
 def post_to_slack(message):
-    """Posts a message to Slack."""
     slack_data = {'text': message}
     response = requests.post(
         SLACK_WEBHOOK_URL,
@@ -41,18 +40,13 @@ def lambda_handler(event, context):
             current_date = datetime.datetime.now().strftime('%Y-%m-%d')
             object_key = f'fire_incidents_data_{current_date}.csv'
 
-            # Convert the CSV data to a DataFrame
             data = pd.read_csv(StringIO(response.content.decode('utf-8')))
-            # Add a 'created_date' column
             data['processing_date'] = current_date
-            # Convert back to CSV
-            # Convert dataframe to CSV string to calculate checksum
             csv_string = data.to_csv(index=False)
             checksum = calculate_md5_checksum(csv_string)
             
             csv_buffer = StringIO(csv_string)
             
-            # Storing checksum as metadata
             s3_client.put_object(Bucket=BUCKET_NAME, Key=object_key, Body=csv_buffer.getvalue(), Metadata={'checksum': checksum})
             logger.info(f'Successfully uploaded {object_key} to S3 bucket {BUCKET_NAME}.')
         else:
