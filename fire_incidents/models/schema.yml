@@ -1,0 +1,10 @@
+version: 2
+
+
+models:
+  - name: fact_incidents
+    columns:
+    - name: incident_number
+      tests:
+        - unique
+        - not_null

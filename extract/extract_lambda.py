@@ -42,7 +42,7 @@ def lambda_handler(event, context):
 
             data = pd.read_csv(StringIO(response.content.decode('utf-8')))
             data['processing_date'] = current_date
-            csv_string = data.to_csv(index=False)
+            csv_string = data.to_csv(index=False, sep=';')
             checksum = calculate_md5_checksum(csv_string)
             
             csv_buffer = StringIO(csv_string)

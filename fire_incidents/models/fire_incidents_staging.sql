@@ -63,6 +63,5 @@ SELECT
   "supervisor district" AS supervisor_district,
   neighborhood_district,
   point,
-  created_at,
-  updated_at
-FROM {{ source('fire_incidents_staging', 'fire_incidents_staging') }}
+  processing_date
+  FROM {{ source('fire_incidents_staging', 'fire_incidents_staging') }}
