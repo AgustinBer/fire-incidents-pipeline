@@ -8,6 +8,12 @@ This project uses a modern data stack, leveraging dbt (data build tool) and Amaz
 
 ![Alt text](resources/dag.png "DAG")
 
+## Quicksight Visuals 
+
+![Alt text](resources/graph1.png "visual1")
+
+![Alt text](resources/graph2.png "visual2")
+
 ## Features explanation
 
 ### Checksum for Data Integrity: 
